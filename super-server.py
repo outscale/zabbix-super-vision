@@ -27,7 +27,7 @@ _logger.setLevel(logging.DEBUG)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--zabbix_ip", help="Zabbix Frontend IP.", required=True)
-parser.add_argument("--zabbix_url", help="Zabbix URL.", required=True)
+parser.add_argument("--zabbix_url", help="Zabbix URL. Used to build triggers URL.", required=True)
 parser.add_argument("--alert_limit", help="Number of alerts to retrieve.", required=True)
 parser.add_argument("--zabbix_hostgroup", help="Search for hostgroups which correspond to this parameter (Wildcard allowed).", required=True)
 parser.add_argument("--zabbix_min_severity", help="Minimum trigger severity to retrieve.", required=True)
@@ -80,6 +80,11 @@ def convert_seconds(seconds):
 			time = "a month"
 		else:
 			time = str(round(seconds / 2629746)) + " months"
+	if seconds >= 31536000:
+		if round(seconds / 31536000) == 1:
+			time = "a year"
+		else:
+			time = str(round(seconds / 31536000)) + " years"
 	return time
 
 def severity_badge(severity):
@@ -161,12 +166,12 @@ async def check_servers():
 				_logger.error("[ERR] - Port {} KO: {}".format(port, ip))
 			j[ip] = result
 			sock.close()
-		if os.path.exists('/data/zabbix-servers.json'):
-			out = read_file('/data/zabbix-servers.json')
+		if os.path.exists('./data/zabbix-servers.json'):
+			out = read_file('./data/zabbix-servers.json')
 			out.update(j)
-			write_file(out, '/data/zabbix-servers.json')
+			write_file(out, './data/zabbix-servers.json')
 		else:
-			write_file(j, '/data/zabbix-servers.json')
+			write_file(j, './data/zabbix-servers.json')
 		await asyncio.sleep(60)
 
 async def post_note(request):
@@ -187,12 +192,12 @@ async def post_note(request):
 		'lvl': lvl
 	})
 
-	if os.path.exists('/data/motd.json'):
-		out = read_file('/data/motd.json')
+	if os.path.exists('./data/motd.json'):
+		out = read_file('./data/motd.json')
 		out.update(j)
-		write_file(out, '/data/motd.json')
+		write_file(out, './data/motd.json')
 	else:
-		write_file(j, '/data/motd.json')
+		write_file(j, './data/motd.json')
 	_logger.info("[ADD] - {}".format(j))
 	return aiohttp.web.HTTPFound(location=url, text='{}'.format(ts), content_type='text/html')
 
@@ -213,10 +218,10 @@ async def del_note(request):
 	data = await request.post()
 	note_id = data['note_id']
 	url = data['url']
-	out = read_file('/data/motd.json')
+	out = read_file('./data/motd.json')
 	_logger.info('[DEL] - {}'.format(out[note_id]))
 	del out[note_id]
-	write_file(out, '/data/motd.json')
+	write_file(out, './data/motd.json')
 	return aiohttp.web.HTTPFound(location=url)
 
 async def show_alerts(request):
@@ -246,7 +251,7 @@ async def show_alerts(request):
 	teams = request.match_info.get('teams')
 	if not teams:
 		teams = []
-	notes = read_file('/data/motd.json')
+	notes = read_file('./data/motd.json')
 	if notes:
 		for ts in notes:
 			for note in notes[ts]:
@@ -254,18 +259,13 @@ async def show_alerts(request):
 					date_note = datetime.datetime.utcfromtimestamp(int(ts)).strftime('%Y-%m-%d %H:%M:%S')
 					html_notes += "<tr class='bg-"+note['lvl']+"'><td class='text-left'><span class='octicon octicon-clock'></span> "+date_note+"</td><td class='text-center'> "+note['msg']+"</td><td class='text-right'><span class='octicon octicon-hubot'></span><i> (by "+note['name']+")</i></td><td class='text-right'><form action='/del' method='post' accept-charset='utf-8' enctype='application/x-www-form-urlencoded'><input type='text' class='form-control url_note' name='url' hidden readonly><input type='text' name='note_id' value='"+ts+"' readonly hidden><button type='submit' class='btn btn-outline-light btn-sm' id='del_note' ><span class='octicon octicon-trashcan'></span></button></form></td></tr>"
 	html_notes += '</table>'
-	check_zbx = read_file('/data/zabbix-servers.json')
+	check_zbx = read_file('./data/zabbix-servers.json')
 	if check_zbx:
 		for ip in check_zbx:
 			if check_zbx[ip] != 0:
 				html_check += "<tr class='bg-danger'><td class='text-center align-left'><span class='octicon octicon-alert'></span> Zabbix Server: "+ ip + " seems UNREACHABLE! <span class='octicon octicon-alert'></span></td></tr>"
 	html_check += '</table>'
-	### EASTER EGG ###
-	if teams != 'Team-sys':
-		IMAGE='<div class="container-fluid image-container"><img src="/images/logo.png" width="50%"/></div>'
-	else:
-		IMAGE='<div class="container-fluid image-mexico"><img src="/images/patate.jpg" width="30%"/></div>'
-	##################
+	IMAGE='<div class="container-fluid image-container"><img src="/images/zabbix_logo_500x131.png" width="30%"/></div>'
 	if teams:
 		team_list = teams.split('+')
 		for team in team_list:
@@ -405,9 +405,9 @@ def main():
 		aiohttp.web.post('/del', del_note),
 		aiohttp.web.get('/{teams}', show_alerts),
 		aiohttp.web.get('/tv/{teams}', show_alerts),
-		aiohttp.web.static('/images', '/images'),
-		aiohttp.web.static('/css', '/css'),
-		aiohttp.web.static('/js', '/js')])
+		aiohttp.web.static('/images', 'images'),
+		aiohttp.web.static('/css', 'css'),
+		aiohttp.web.static('/js', 'js')])
 
 
 	app.on_startup.append(start_background_tasks)

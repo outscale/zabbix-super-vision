@@ -1,5 +1,6 @@
 
 CONTENT = {}
+
 LIST_SEVERITY = {
 '0': 'Not classified',
 '1': 'Information',
@@ -8,6 +9,7 @@ LIST_SEVERITY = {
 '4': 'High',
 '5': 'Disaster'
 }
+
 TOTAL_ALERTS = "0"
 
 TEMPLATE_HEAD = '''<!doctype html>
@@ -150,23 +152,9 @@ TEMPLATE_FOOTER='''
 '''
 
 COLOR_TEAM = {
-	"Team-mon":						"#04B404;",
-	"Team-Infra":						"#0000FF;",
-	"Team-sys":						"#FF0000;",
-	"Team-datalake":					"#FFBF00;",
-	"Team-inge":						"#088A4B;",
-	"Team-CI":						"#AEB404;",
-	"Team-QA":						"#FF00FF;",
-	"Team-IT":						"#006666;",
-	"Team-top":						"#1DD8EA;",
-	"Team-RD":						"#FE9A2E;",
-	"Team-sec1":						"#0B6138;",
-	"Team-nocall":						"#AC58FA;",
-	"Team-nprd":						"#0B610B;",
-	"Team-exa":						"#E7B339;",
-	"Team-LM":						"#DD90F2;",
-	"Team-secu":						"#F290E8;",
-	"No-group":						"#BDBDBD;"
+	"Discovered hosts":					"#04B404;",
+	"Linux servers":					"#DD90F2;",
+	"Zabbix servers":					"#F290E8;"
 }
 
 NAVBAR = '''
