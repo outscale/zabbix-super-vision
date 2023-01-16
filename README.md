@@ -1,4 +1,4 @@
-# Super-Vision
+# Super-Vision :eyeglasses:
 
 ## Description
 Super-Vision is a monitoring dashboard for Zabbix.
