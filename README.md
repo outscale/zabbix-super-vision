@@ -9,7 +9,9 @@ It is a good practice to create a dedicated virtualenv first. Even if it usually
 
 - Clone this repository
 - Change directory
-`cd super-vision`
+```
+cd super-vision
+```
 - Create a virtualenv
 ```
 python3 -m venv .venv
