@@ -56,6 +56,12 @@ Usage: super-server.py [-h]
 python3 super-server.py --zabbix_ip=127.0.0.1:8080 --zabbix_url='https://zabbix.internal' --alert_limit=100 --zabbix_hostgroup="Team-*" --zabbix_min_severity=3 --zabbix_login=Admin --zabbix_pass='admin' --list_zabbix_servers=127.0.0.1:10051 --zabbix_timeout=30 --port=8080
 ```
 
+## Next
+
+- [ ] Pause page reload when push on button "Add message".
+- [ ] Refresh hostgroups in background not on script launch.
+- [ ] Clean/rework code.
+
 ## Contributing
 - If you think you've found a bug in the code or you have a question regarding the usage of this software, please reach out to us by opening an issue in this GitHub repository.
 - Contributions to this project are welcome: if you want to add a feature or a fix a bug, please do so by opening a Pull Request in this GitHub repository. In case of feature contribution, we kindly ask you to open an issue to discuss it beforehand.
