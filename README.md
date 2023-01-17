@@ -72,5 +72,3 @@ python3 super-server.py --zabbix_ip=127.0.0.1:8080 --zabbix_url='https://zabbix.
 > Copyright Outscale SAS
 >
 > BSD-3-Clause
-
-This project is compliant with [REUSE](https://reuse.software/).
