@@ -27,10 +27,15 @@ pip3 install -r requirements.txt
 ## Usage
 Fill the settings.py file with your informations about Zabbix server IP, severity ...
 
+### TV Mode
 You can use the TV Mode :tv: to remove the menu from the page by adding /tv/ in your URL.
 
 _Example:_ http://127.0.0.1:8080/tv/
 
+### MOTD
+
+You can write a message which will be displayed for ALL host groups or only one with a different severity (Info, Warning, Disaster) by clicking on the button 
+:speech_balloon:
 
 ## Contributing
 - If you think you've found a bug in the code or you have a question regarding the usage of this software, please reach out to us by opening an issue in this GitHub repository.
