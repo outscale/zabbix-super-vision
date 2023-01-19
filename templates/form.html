@@ -1,0 +1,6 @@
+<div class='col'><select class='form-control' name='team'>
+    <option value='all'>All teams</option>
+    {% for hostgroup in hostgroups %}
+    <option value="{{ hostgroup }}">{{ hostgroup }}</option>
+    {% endfor %}
+</select></div>
