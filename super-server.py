@@ -126,7 +126,7 @@ def get_hostgroups():
 		request['output'] = 'extend'
 		request['search'] = dict()
 		request['search']['name'] = hg
-		request['searchWildcardsEnabled'] = 1
+		request['searchWildcardsEnabled'] = True
 		resp = zabbix_call(request, 'hostgroup')
 		for x in range(len(resp)):
 			groups.append(resp[x]['name'])
@@ -164,7 +164,7 @@ def get_problems(ttl_hash = None):
 	req['limit'] = limit
 	req['groupids'] = groupids
 	req['monitored'] = 1
-	req['maintenance'] = 0
+	req['maintenance'] = False
 	req['active'] = 1
 	req['min_severity'] = settings.SEVERITY
 	req['output'] = "extend"
