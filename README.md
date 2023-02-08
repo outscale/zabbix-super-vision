@@ -3,7 +3,7 @@
 ## Description
 Super-Vision is a monitoring dashboard for Zabbix.
 
-Tested for Zabbix 4.4.10
+Tested for Zabbix 4.4.10 and 6.2
 
 ![](super-vision-example.png)
 
