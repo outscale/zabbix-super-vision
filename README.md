@@ -8,15 +8,13 @@ Tested for Zabbix 4.4.10 and 6.2
 
 ![](super-vision-example.png)
 
+## Prerequisites
+- gcc
+- python3-devel
+
 ## Installation
 You will need [Python 3.6+](https://www.python.org/) or later.
 It is a good practice to create a dedicated virtualenv first. Even if it usually won't harm to install Python libraries directly on the system, better to contain dependencies in a virtual environment.
-
-### Prerequisites (names depending of your distro)
-```
-gcc
-python3-devel
-```
 
 - Clone this repository
 - Change directory
