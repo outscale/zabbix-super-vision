@@ -34,6 +34,10 @@ pip3 install -r requirements.txt
 
 ## Usage
 Fill the settings.py file with your informations about Zabbix server IP, severity ...
+```
+cd zabbix_super_vision
+uvicorn --host  0.0.0.0 --port 8003 super_server:app
+```
 
 ### TV Mode
 You can use the TV Mode :tv: to remove the menu from the page by adding /tv/ in your URL.

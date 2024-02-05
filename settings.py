@@ -1,13 +1,26 @@
-ZABBIX_API = 'http://127.0.0.1:8080' # IP of the frontend of Zabbix used to make API calls
-ZABBIX_URL = 'https://zabbix.internal' # URL of your Zabbix frontend used to create links about triggers informations
-ZABBIX_LOGIN = 'Admin' # Login used to call Zabbix API
-ZABBIX_PASS = 'admin' # Password used to call Zabbix API
-LIMIT = 3000 # Number of alerts to retrieve for all host groups mentioned below
-HOSTGROUP = ["Zabbix*"] # Host groups related to your alerts (e.g: "Zabbix servers","Zabbix proxy","Zabbix Frontend"). You can use a wildcard.
-SEVERITY = 3 # Minimum severity to retrieve
-TIMEOUT = 20 # API Timeout
-PORT = 8080 # Listen port for the super-server
-ZABBIX_SERVERS_CHECK = ['127.0.0.1:10051'] # Zabbix server IP to check. (Makes a socket connection on the IP:port)
-COLOR_TEAM = {
-"Zabbix servers": "#04B404"
-} # Possibility to fix color for host groups
+from schemas import ZabbixServer
+from schemas.settings import Settings
+
+settings = Settings(
+    # Zabbix server, test if server id online
+    ZABBIX_SERVERS_CHECK=[ZabbixServer(ip="192.168.0.1", port=10051), ZabbixServer(ip="192.168.0.2", port=10052), ZabbixServer(ip="192.168.0.3", port=10053)],
+    # IP of the frontend of Zabbix used to make API calls
+    ZABBIX_API_ENDPOINT="http://192.168.0.50:80",
+    # Timeout for zabbix API
+    ZABBIX_API_TIMEOUT=60,
+    # Restry for zabbix API
+    ZABBIX_API_RETRY=1,
+    # Limit trigger on zabbix API
+    ZABBIX_API_LIMIT=1000,
+    # Latency for show message zabbix API is down
+    ZABBIX_API_ACCEPTED_LATENCY=20,
+    # Login used to call Zabbix API
+    ZABBIX_API_LOGIN="LOGIN",
+    ZABBIX_API_PASSWORD="PASSWORD",
+    # URL of your Zabbix frontend used to create links about triggers informations
+    ZABBIX_URL="https://zabbix-frontend.example",
+    # List team and associate zabbix group
+    TEAMS={ "Team-1": ["Group-1", "Group-2", "Group-3", "Group-4"],
+            "Team-2": ["Group-10", "Group-20", "Group-30"],
+            "Other": ["Group-100", "Group-200", "Group-300", "Group-4"] }
+)
