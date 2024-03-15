@@ -1,0 +1,100 @@
+a {
+  color: #DF7401;
+  font-weight: bolder;
+}
+a:hover {
+  text-decoration: none;
+  color: #DF7401;
+}
+body {
+  background-color: #333;
+  font-weight: bolder;
+}
+.disaster {
+  background-color:#D30801;
+  color: #FFFFFF !important;
+}
+.disaster a {
+  color: white;
+}
+.table td, .table th {
+  padding: 1px !important;
+  vertical-align: middle !important;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15%;
+}
+.btn-group-sm>.btn, .btn-sm {
+  padding: .08rem .5rem;
+}
+
+/* line 3, ../sass/_offline-theme-base-indicator.sass */
+.offline-ui, .offline-ui *, .offline-ui:before, .offline-ui:after, .offline-ui *:before, .offline-ui *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 6, ../sass/_offline-theme-base-indicator.sass */
+.offline-ui {
+  display: none;
+  position: fixed;
+  background: white;
+  z-index: 2000;
+  display: inline-block;
+}
+/* line 13, ../sass/_offline-theme-base-indicator.sass */
+.offline-ui .offline-ui-retry {
+  display: none;
+}
+/* line 16, ../sass/_offline-theme-base-indicator.sass */
+.offline-ui.offline-ui-up {
+  display: block;
+}
+/* line 19, ../sass/_offline-theme-base-indicator.sass */
+.offline-ui.offline-ui-down {
+  display: block;
+}
+
+/* line 11, ../sass/offline-theme-default-indicator.sass */
+.offline-ui {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  font-family: "Helvetica Neue", sans-serif;
+  padding: 1em;
+  max-width: 100%;
+  bottom: 1em;
+  left: 1em;
+}
+/* line 19, ../sass/offline-theme-default-indicator.sass */
+.offline-ui.offline-ui-up {
+  background: #d6e9c6;
+  color: #468847;
+}
+/* line 23, ../sass/offline-theme-default-indicator.sass */
+.offline-ui.offline-ui-down {
+  background: #ec8787;
+  color: #551313;
+}
+/* line 5, ../sass/offline-language-english-indicator.sass */
+.offline-ui.offline-ui-up .offline-ui-content:before {
+  content: "Online";
+}
+/* line 10, ../sass/offline-language-english-indicator.sass */
+.offline-ui.offline-ui-down .offline-ui-content:before {
+  content: "Offline";
+}
+
+#health-status {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 1.5em;
+    z-index: 1000;
+}
