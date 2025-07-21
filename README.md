@@ -1,5 +1,5 @@
 # Super-Vision :eyeglasses:
-[![Project Incubating](https://docs.outscale.com/fr/userguide/_images/Project-Incubating-blue.svg)](https://docs.outscale.com/en/userguide/Open-Source-Projects.html)
+[![Project Archived](https://docs.outscale.com/fr/userguide/_images/Project-Archived-red.svg)](https://docs.outscale.com/en/userguide/Open-Source-Projects.html)
 
 ## Description
 Super-Vision is a monitoring dashboard for Zabbix.
